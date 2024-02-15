@@ -58,7 +58,7 @@ $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIden
 
 $dscUri = "https://raw.githubusercontent.com/denelon/setup/main/"
 $dscNonAdmin = "denelon.user.dsc.yml";
-$dscAdmin = "crutkas.admin.dsc.yml";
+$dscAdmin = "denelon.admin.dsc.yml";
 
 $dscNonAdminUri = $dscUri + $dscNonAdmin 
 $dscAdminUri = $dscUri + $dscAdmin
