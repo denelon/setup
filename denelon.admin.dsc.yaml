@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+
+################################################################################
+# Reference https://github.com/denelon/setup                                   #
+# This configuration file must be run as admin to succeed.                     #
+# Assertions:                                                                  #
+#   Check Windows 11 version for Dev Drive support                             #
+# Configuration:                                                               #
+#   Create 50 GB Dev Drive                                                     #
+################################################################################
+
+properties:
+  configurationVersion: 0.2.0
+  assertions:
+    - resource: Microsoft.Windows.Developer/OsVersion
+      directives:
+        description: Verify min OS version requirement
+        allowPrerelease: true
+      settings:
+        MinVersion: '10.0.22621.0'
+   resources:
+        - resource: Disk 
+          id: DevDrive1 
+          directives: 
+            description: '50 GB Dev Drive volume onto Disk 0 with' 
+            module: StorageDsc 
+            allowPrerelease: true 
+          settings: 
+            DiskId: '0' 
+            DiskIdType: 'Number' 
+            DriveLetter: 'D' 
+            FSLabel: 'Dev Drive'  
+            DevDrive: true 
+            AllowDestructive: true 
+            FSFormat: 'ReFS' 
+            Size: '50Gb' 
