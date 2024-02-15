@@ -69,7 +69,7 @@ if (!$isAdmin) {
    Start-Process shell:AppsFolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App
 
    Invoke-WebRequest -Uri $dscNonAdminUri -OutFile $dscNonAdmin 
-   winget configuration -f $dscNonAdmin 
+   winget configure -f $dscNonAdmin 
    
    # clean up, Clean up, everyone wants to clean up
    Remove-Item $dscNonAdmin -verbose
@@ -81,7 +81,7 @@ if (!$isAdmin) {
 else {
    # admin section now
    Invoke-WebRequest -Uri $dscAdminUri -OutFile $dscAdmin 
-   winget configuration -f $dscAdmin 
+   winget configure -f $dscAdmin 
    
    # clean up, Clean up, everyone wants to clean up
    Remove-Item $dscAdmin -verbose
