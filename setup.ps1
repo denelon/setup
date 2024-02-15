@@ -57,8 +57,8 @@ else {
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 $dscUri = "https://raw.githubusercontent.com/denelon/setup/main/"
-$dscNonAdmin = "denelon.user.dsc.yml";
-$dscAdmin = "denelon.admin.dsc.yml";
+$dscNonAdmin = "denelon.user.dsc.yaml";
+$dscAdmin = "denelon.admin.dsc.yaml";
 
 $dscNonAdminUri = $dscUri + $dscNonAdmin 
 $dscAdminUri = $dscUri + $dscAdmin
