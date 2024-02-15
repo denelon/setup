@@ -19,18 +19,18 @@ properties:
       settings:
         MinVersion: '10.0.22621.0'
    resources:
-        - resource: Disk 
-          id: DevDrive1 
-          directives: 
-            description: '50 GB Dev Drive volume onto Disk 0 with' 
-            module: StorageDsc 
-            allowPrerelease: true 
-          settings: 
-            DiskId: '0' 
-            DiskIdType: 'Number' 
-            DriveLetter: 'D' 
-            FSLabel: 'Dev Drive'  
-            DevDrive: true 
-            AllowDestructive: true 
-            FSFormat: 'ReFS' 
-            Size: '50Gb' 
+     - resource: Disk 
+       id: DevDrive1 
+        directives: 
+          description: '50 GB Dev Drive volume onto Disk 0 with' 
+          module: StorageDsc 
+          allowPrerelease: true 
+        settings: 
+          DiskId: '0' 
+          DiskIdType: 'Number' 
+          DriveLetter: 'D' 
+          FSLabel: 'Dev Drive'  
+          DevDrive: true 
+          AllowDestructive: true 
+          FSFormat: 'ReFS' 
+          Size: '50Gb' 
