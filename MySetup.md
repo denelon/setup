@@ -59,6 +59,12 @@ File Explorer
 Windows Settings
 - Developer Mode Enabled
 
+Windows Features
+- Windows Sandbox
+
+WSL
+- Ubuntu
+
 ScreenToGif
 
 PowerToys
