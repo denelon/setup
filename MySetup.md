@@ -2,7 +2,9 @@
 
 I want to be able to run a single WinGet configuration by passing in the URL to my configuration file like:
 
-```winget configure https://raw.githubusercontent.com/microsoft/denelon/main/denelon.dsc.yaml```
+```
+winget configure https://raw.githubusercontent.com/microsoft/denelon/main/denelon.dsc.yaml
+```
 
 This should result in making Windows feel like home with all my favorite apps and settings.
 
@@ -70,3 +72,9 @@ ScreenToGif
 PowerToys
 - Command Not Found Enabled
 - Mouse Without Borders Enabled (no secrets in configuration file)
+
+## Gaps and potential workarounds
+* WinGet CLI is in a packaged process so when WindowsOptionalFeature is used, the DISM APIs aren't reachable.
+  * Use Get-WinGetConfiguration | Invoke-WinGetConfiguration
+* Elevation issues
+  * Use two configuration files. One required authentication, the other doesn't require (or prohibits elevation)
