@@ -73,6 +73,10 @@ PowerToys
 - Command Not Found Enabled
 - Mouse Without Borders Enabled (no secrets in configuration file)
 
+Windows Features
+- Windows Sandbox
+- Hyper-V
+
 ## Gaps and potential workarounds
 * WinGet CLI is in a packaged process so when WindowsOptionalFeature is used, the DISM APIs aren't reachable.
   * Use Get-WinGetConfiguration | Invoke-WinGetConfiguration
