@@ -13,3 +13,6 @@ Some of these things will be automated using PowerShell scripts. Some of the con
 # Running the configuration
 1. Open Windows PowerShell
 2. Run setup.ps1
+
+# Improvements
+* [Support mixed elevation requirements in configuration files](https://github.com/microsoft/winget-cli/issues/4353)
