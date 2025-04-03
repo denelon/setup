@@ -56,6 +56,7 @@ properties:
     id: winget_Microsoft.AzureCLI
     directives:
       description: "Install Microsoft.AzureCLI"
+      securityContext: elevated
     settings:
       id: "Microsoft.AzureCLI"
       source: "winget"
