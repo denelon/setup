@@ -37,7 +37,7 @@ properties:
       securityContext: elevated
     settings:
       id: "Git.Git"
-    source: "winget"
+      source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_JanDeDobbeleer.OhMyPosh
     directives:
