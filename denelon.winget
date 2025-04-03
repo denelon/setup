@@ -1,0 +1,103 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+# Baseline created using winget configure export 1.11.220-preview
+################################################################################
+# Reference: https://github.com/denelon/setup                                  #
+################################################################################
+
+properties:
+  configurationVersion: 0.2
+  assertions:
+  - resource: Microsoft.Windows.Developer/OsVersion
+    directives:
+      description: Verify min OS version requirement
+      allowPrerelease: true
+    settings:
+      MinVersion: '10.0.22621.0'
+    resources:
+    - resource: Disk 
+      id: DevDrive1 
+      directives: 
+        description: '100 GB Dev Drive volume onto Disk 0 with' 
+        module: StorageDsc 
+        allowPrerelease: true 
+        securityContext: elevated
+      settings: 
+        DiskId: '0' 
+        DiskIdType: 'Number' 
+        DriveLetter: 'D' 
+        FSLabel: 'Dev Drive'  
+        DevDrive: true 
+        AllowDestructive: true 
+        FSFormat: 'ReFS' 
+        Size: '100Gb' 
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Git.Git
+    directives:
+      description: "Install Git.Git"
+    settings:
+      id: "Git.Git"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_JanDeDobbeleer.OhMyPosh
+    directives:
+      description: "Install JanDeDobbeleer.OhMyPosh"
+    settings:
+      id: "JanDeDobbeleer.OhMyPosh"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.PowerShell
+    directives:
+      description: "Install Microsoft.PowerShell"
+    settings:
+      id: "Microsoft.PowerShell"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.AzureCLI
+    directives:
+      description: "Install Microsoft.AzureCLI"
+    settings:
+      id: "Microsoft.AzureCLI"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_GitHub.GitHubDesktop
+    directives:
+      description: "Install GitHub.GitHubDesktop"
+    settings:
+      id: "GitHub.GitHubDesktop"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.AIShell
+    directives:
+      description: "Install Microsoft.AIShell"
+    settings:
+      id: "Microsoft.AIShell"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Element.Element
+    directives:
+      description: "Install Element.Element"
+    settings:
+      id: "Element.Element"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.VisualStudioCode
+    directives:
+      description: "Install Microsoft.VisualStudioCode"
+    settings:
+      id: "Microsoft.VisualStudioCode"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.WingetCreate
+    directives:
+      description: "Install Microsoft.WingetCreate"
+    settings:
+      id: "Microsoft.WingetCreate"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.WindowsApp
+    directives:
+      description: "Install Microsoft.WindowsApp"
+    settings:
+      id: "Microsoft.WindowsApp"
+      source: "winget"
+

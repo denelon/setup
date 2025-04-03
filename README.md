@@ -7,7 +7,7 @@ Some of these things will be automated using PowerShell scripts. Some of the con
 
 # Assumptions
 * New computer with Windows 11 (This should also work on an existing Windows 11 build with Dev Drive support)
-* C:\ can be shrunk by 50 gigs to create a Dev Drive
+* C:\ can be shrunk by 100 gigs to create a Dev Drive
 * D:\ will be the Dev Drive
 
 # Running the configuration
