@@ -39,6 +39,13 @@ properties:
       id: "Git.Git"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.PowerToys
+    directives:
+      description: "Install Microsoft.PowerToys"
+    settings:
+      id: "Microsoft.PowerToys"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Microsoft.AzureCLI
     directives:
       description: "Install Microsoft.AzureCLI"
