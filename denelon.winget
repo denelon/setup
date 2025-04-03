@@ -13,30 +13,30 @@ properties:
       allowPrerelease: true
     settings:
       MinVersion: '10.0.22621.0'
-    resources:
-    - resource: Disk 
-      id: DevDrive1 
-      directives: 
-        description: '100 GB Dev Drive volume onto Disk 0 with' 
-        module: StorageDsc 
-        allowPrerelease: true 
-        securityContext: elevated
-      settings: 
-        DiskId: '0' 
-        DiskIdType: 'Number' 
-        DriveLetter: 'D' 
-        FSLabel: 'Dev Drive'  
-        DevDrive: true 
-        AllowDestructive: true 
-        FSFormat: 'ReFS' 
-        Size: '100Gb' 
+  resources:
+  - resource: Disk 
+    id: DevDrive1 
+    directives: 
+      description: '100 GB Dev Drive volume onto Disk 0 with' 
+      module: StorageDsc 
+      allowPrerelease: true 
+      securityContext: elevated
+    settings: 
+      DiskId: '0' 
+      DiskIdType: 'Number' 
+      DriveLetter: 'D' 
+      FSLabel: 'Dev Drive'  
+      DevDrive: true 
+      AllowDestructive: true 
+      FSFormat: 'ReFS' 
+      Size: '100Gb' 
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Git.Git
     directives:
       description: "Install Git.Git"
     settings:
       id: "Git.Git"
-      source: "winget"
+    source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_JanDeDobbeleer.OhMyPosh
     directives:
