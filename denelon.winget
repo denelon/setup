@@ -102,4 +102,3 @@ properties:
     settings:
       id: "Microsoft.WindowsApp"
       source: "winget"
-
