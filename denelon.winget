@@ -64,6 +64,7 @@ properties:
     id: winget_Microsoft.PowerShell
     directives:
       description: "Install Microsoft.PowerShell"
+      securityContext: elevated
     settings:
       id: "Microsoft.PowerShell"
       source: "winget"
