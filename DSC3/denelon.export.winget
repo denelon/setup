@@ -1,0 +1,343 @@
+# Created using winget configure export 1.12.210-preview
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.3
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+metadata:
+  winget:
+    processor:
+      identifier: "dscv3"
+resources:
+- name: Microsoft.WinGet/Package_hqpy8f85
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Configure Microsoft.PowerShell"
+  properties:
+    id: "Microsoft.PowerShell"
+    source: "winget"
+- name: Microsoft.WinGet/UserSettingsFile-0
+  type: Microsoft.WinGet/UserSettingsFile
+  properties:
+    settings:
+      visual:
+        progressBar: "rainbow"
+        enableSixels: true
+      network:
+        downloader: "wininet"
+      $schema: "https://aka.ms/winget-settings.schema.json"
+- name: Microsoft.WinGet/AdminSettings-0
+  type: Microsoft.WinGet/AdminSettings
+  metadata:
+    winget:
+      securityContext: "elevated"
+  properties:
+    settings:
+      LocalManifestFiles: false
+      ProxyCommandLineOptions: false
+      BypassCertificatePinningForMicrosoftStore: false
+      InstallerHashOverride: false
+      LocalArchiveMalwareScanOverride: false
+- name: Microsoft.DSC.Transitional/RunCommandOnSet_lidqtqd2
+  type: Microsoft.DSC.Transitional/RunCommandOnSet
+  metadata:
+    description: "Configure Microsoft.Windows.Settings"
+  dependsOn:
+  - Microsoft.WinGet/Package_hqpy8f85
+  properties:
+    arguments:
+    - "-NoProfile"
+    - "-NoLogo"
+    - "-Command"
+    - "if (-not (Get-Module -ListAvailable -Name Microsoft.Windows.Settings)) { Install-Module
+      -Name Microsoft.Windows.Settings -Confirm:$False -Force -AllowPrerelease -AllowClobber
+      }"
+    executable: "pwsh"
+- name: Microsoft.Windows.Settings/WindowsSettings_gxy261x3
+  type: Microsoft.Windows.Settings/WindowsSettings
+  metadata:
+    description: "Configure Microsoft.Windows.Settings/WindowsSettings"
+    winget:
+      securityContext: "elevated"
+  dependsOn:
+  - Microsoft.DSC.Transitional/RunCommandOnSet_lidqtqd2
+  properties:
+    SystemColorMode: "Light"
+    DeveloperMode: true
+    TaskbarAlignment: "Middle"
+    AppColorMode: "Light"
+- name: winget_7zip.7zip
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install 7zip.7zip"
+  properties:
+    id: "7zip.7zip"
+    source: "winget"
+- name: winget_Git.Git
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Git.Git"
+  properties:
+    id: "Git.Git"
+    source: "winget"
+- name: winget_Notepad++.Notepad++
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Notepad++.Notepad++"
+  properties:
+    id: "Notepad++.Notepad++"
+    source: "winget"
+- name: winget_Microsoft.Office
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.Office"
+  properties:
+    id: "Microsoft.Office"
+    source: "winget"
+- name: winget_Microsoft.AzureMonitorAgent
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.AzureMonitorAgent"
+  properties:
+    id: "Microsoft.AzureMonitorAgent"
+    source: "winget"
+- name: winget_DBBrowserForSQLite.DBBrowserForSQLite
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install DBBrowserForSQLite.DBBrowserForSQLite"
+  properties:
+    id: "DBBrowserForSQLite.DBBrowserForSQLite"
+    source: "winget"
+- name: winget_Microsoft.CLRTypesSQLServer.2019
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.CLRTypesSQLServer.2019"
+  properties:
+    id: "Microsoft.CLRTypesSQLServer.2019"
+    source: "winget"
+- name: winget_Microsoft.PowerShell
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.PowerShell"
+  properties:
+    id: "Microsoft.PowerShell"
+    source: "winget"
+- name: winget_Microsoft.VisualStudio.2022.Community
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.VisualStudio.2022.Community"
+  properties:
+    id: "Microsoft.VisualStudio.2022.Community"
+    source: "winget"
+- name: winget_Microsoft.Edge
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.Edge"
+  properties:
+    id: "Microsoft.Edge"
+    source: "winget"
+- name: winget_Microsoft.VCRedist.2015+.x86
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.VCRedist.2015+.x86"
+  properties:
+    id: "Microsoft.VCRedist.2015+.x86"
+    source: "winget"
+- name: winget_Microsoft.DotNet.Framework.DeveloperPack.4.6
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.DotNet.Framework.DeveloperPack.4.6"
+  properties:
+    id: "Microsoft.DotNet.Framework.DeveloperPack.4.6"
+    source: "winget"
+- name: winget_Microsoft.VCRedist.2015+.arm64
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.VCRedist.2015+.arm64"
+  properties:
+    id: "Microsoft.VCRedist.2015+.arm64"
+    source: "winget"
+- name: winget_Microsoft.RemoteHelp
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.RemoteHelp"
+  properties:
+    id: "Microsoft.RemoteHelp"
+    source: "winget"
+- name: winget_Microsoft.DotNet.DesktopRuntime.8
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.DotNet.DesktopRuntime.8"
+  properties:
+    id: "Microsoft.DotNet.DesktopRuntime.8"
+    source: "winget"
+- name: winget_Microsoft.VCRedist.2015+.x64
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.VCRedist.2015+.x64"
+  properties:
+    id: "Microsoft.VCRedist.2015+.x64"
+    source: "winget"
+- name: winget_GitHub.GitHubDesktop
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install GitHub.GitHubDesktop"
+  properties:
+    id: "GitHub.GitHubDesktop"
+    source: "winget"
+- name: winget_Microsoft.AIShell
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.AIShell"
+  properties:
+    id: "Microsoft.AIShell"
+    source: "winget"
+- name: winget_Microsoft.Edit
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.Edit"
+  properties:
+    id: "Microsoft.Edit"
+    source: "winget"
+- name: winget_Microsoft.NuGet
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.NuGet"
+  properties:
+    id: "Microsoft.NuGet"
+    source: "winget"
+- name: winget_Microsoft.OneDrive
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.OneDrive"
+  properties:
+    id: "Microsoft.OneDrive"
+    source: "winget"
+- name: winget_SQLite.SQLite
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install SQLite.SQLite"
+  properties:
+    id: "SQLite.SQLite"
+    source: "winget"
+- name: winget_Zoom.Zoom.EXE
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Zoom.Zoom.EXE"
+  properties:
+    id: "Zoom.Zoom.EXE"
+    source: "winget"
+- name: winget_Element.Element
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Element.Element"
+  properties:
+    id: "Element.Element"
+    source: "winget"
+- name: winget_Microsoft.PowerToys
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.PowerToys"
+  properties:
+    id: "Microsoft.PowerToys"
+    source: "winget"
+- name: winget_Microsoft.VisualStudioCode
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.VisualStudioCode"
+  properties:
+    id: "Microsoft.VisualStudioCode"
+    source: "winget"
+- name: winget_Microsoft.Teams
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.Teams"
+  properties:
+    id: "Microsoft.Teams"
+    source: "winget"
+- name: winget_Microsoft.AppInstaller
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.AppInstaller"
+  properties:
+    id: "Microsoft.AppInstaller"
+    source: "winget"
+- name: winget_Microsoft.UI.Xaml.2.7
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.UI.Xaml.2.7"
+  properties:
+    id: "Microsoft.UI.Xaml.2.7"
+    source: "winget"
+- name: winget_Microsoft.UI.Xaml.2.8
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.UI.Xaml.2.8"
+  properties:
+    id: "Microsoft.UI.Xaml.2.8"
+    source: "winget"
+- name: winget_Microsoft.VCLibs.Desktop.14
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.VCLibs.Desktop.14"
+  properties:
+    id: "Microsoft.VCLibs.Desktop.14"
+    source: "winget"
+- name: winget_Microsoft.WingetCreate
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.WingetCreate"
+  properties:
+    id: "Microsoft.WingetCreate"
+    source: "winget"
+- name: Microsoft.WinGetCreate/Settings-0
+  type: Microsoft.WinGetCreate/Settings
+  dependsOn:
+  - winget_Microsoft.WingetCreate
+  properties:
+    settings:
+      Telemetry:
+        disable: false
+      Manifest:
+        format: "yaml"
+      WindowsPackageManagerRepository:
+        name: "winget-pkgs"
+        owner: "microsoft"
+      CleanUp:
+        disable: false
+        intervalInDays: 7
+      $schema: "https://aka.ms/wingetcreate-settings.schema.0.1.json"
+      Visual:
+        anonymizePaths: true
+- name: winget_Microsoft.WindowsTerminal
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.WindowsTerminal"
+  properties:
+    id: "Microsoft.WindowsTerminal"
+    source: "winget"
+- name: winget_Microsoft.WindowsApp
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install Microsoft.WindowsApp"
+  properties:
+    id: "Microsoft.WindowsApp"
+    source: "winget"
+- name: msstore_XPDC2RH70K22MN
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install XPDC2RH70K22MN"
+  properties:
+    id: "XPDC2RH70K22MN"
+    source: "msstore"
+- name: msstore_9NVTPZWRC6KQ
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install 9NVTPZWRC6KQ"
+  properties:
+    id: "9NVTPZWRC6KQ"
+    source: "msstore"
+- name: msstore_9WZDNCRFHVN5
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Install 9WZDNCRFHVN5"
+  properties:
+    id: "9WZDNCRFHVN5"
+    source: "msstore"
