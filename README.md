@@ -67,6 +67,14 @@ New configurations should use v3. To convert an existing v2 config, see the [mig
 - C:\ can be shrunk by 100 GB to create a Dev Drive
 - D:\ will be the Dev Drive
 
+## Improvements
+
+Tracked issues that would improve these configurations:
+
+| Issue | Description |
+|-------|-------------|
+| [PowerShell/DSC#1521](https://github.com/PowerShell/DSC/issues/1521) | `Microsoft/OSInfo`: Support minimum version assertion (>= comparison) — needed for fast OS version pre-flight checks in v3 configs |
+
 ## Related
 
 - [WinGet Configuration docs](https://learn.microsoft.com/windows/package-manager/configuration/)
