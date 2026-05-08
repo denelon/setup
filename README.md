@@ -12,6 +12,9 @@ My goal is to get to a pure WinGet configuration with zero work-arounds. I'll ca
 1. Open Windows PowerShell
 2. Run `winget configure https://raw.githubusercontent.com/denelon/setup/refs/heads/main/denelon.winget`
 
+# Copilot CLI — Persistent Instructions
+
+Want Copilot CLI to remember how you work across every session and every machine? See the [Copilot CLI setup guide](copilot-cli/README.md) for a complete walkthrough.
 
 # Improvements
 * [Support mixed elevation requirements in configuration files](https://github.com/microsoft/winget-cli/issues/4353)
