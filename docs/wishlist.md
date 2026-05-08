@@ -77,5 +77,4 @@ Windows Features
 ## Gaps and potential workarounds
 * WinGet CLI is in a packaged process so when WindowsOptionalFeature is used, the DISM APIs aren't reachable.
   * Use Get-WinGetConfiguration | Invoke-WinGetConfiguration
-* Elevation issues
-  * Use two configuration files. One required authentication, the other doesn't require (or prohibits elevation)
+* ~~Elevation issues~~ — **Resolved:** Mixed elevation is now supported in WinGet Configuration files.
