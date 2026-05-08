@@ -67,6 +67,14 @@ New configurations should use v3. To convert an existing v2 config, see the [mig
 - C:\ can be shrunk by 100 GB to create a Dev Drive
 - D:\ will be the Dev Drive
 
+## Improvements
+
+Upstream issues that would improve WinGet Configuration workflows. These are tracked here as a wishlist — when resolved, they unlock better configurations in this repo.
+
+| Issue | Area | Description |
+|-------|------|-------------|
+| [PowerShell/DSC#1521](https://github.com/PowerShell/DSC/issues/1521) | Assertions | `Microsoft/OSInfo`: Support minimum version assertion (>= comparison) — enables fast native OS version pre-flight in v3 configs |
+
 ## Related
 
 - [WinGet Configuration docs](https://learn.microsoft.com/windows/package-manager/configuration/)
