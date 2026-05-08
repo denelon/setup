@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
-# Baseline created using winget configure export 1.11.220-preview
-################################################################################
-# Reference: https://github.com/denelon/setup                                  #
+# Curated workstation configuration for Demitrius Nelon
+# Reference: https://github.com/denelon/setup
 ################################################################################
 
 properties:
@@ -14,99 +13,277 @@ properties:
     settings:
       MinVersion: '10.0.22621.0'
   resources:
-  - resource: StorageDsc/Disk 
-    id: DevDrive1 
-    directives: 
-      description: '100 GB Dev Drive volume onto Disk 0 with' 
-      module: StorageDsc 
-      allowPrerelease: true 
+  ############################################################################
+  # Dev Drive
+  ############################################################################
+  - resource: StorageDsc/Disk
+    id: DevDrive1
+    directives:
+      description: '100 GB Dev Drive volume onto Disk 0'
+      module: StorageDsc
+      allowPrerelease: true
       securityContext: elevated
-    settings: 
-      DiskId: '0' 
-      DiskIdType: 'Number' 
-      DriveLetter: 'D' 
-      FSLabel: 'Dev Drive'  
-      DevDrive: true 
-      AllowDestructive: true 
-      FSFormat: 'ReFS' 
-      Size: '100Gb' 
+    settings:
+      DiskId: '0'
+      DiskIdType: 'Number'
+      DriveLetter: 'D'
+      FSLabel: 'Dev Drive'
+      DevDrive: true
+      AllowDestructive: true
+      FSFormat: 'ReFS'
+      Size: '100Gb'
+  ############################################################################
+  # Packages — Core Tools
+  ############################################################################
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Git.Git
     directives:
-      description: "Install Git.Git"
+      description: "Install Git"
       securityContext: elevated
     settings:
       id: "Git.Git"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
-    id: winget_Microsoft.PowerToys
-    directives:
-      description: "Install Microsoft.PowerToys"
-    settings:
-      id: "Microsoft.PowerToys"
-      source: "winget"
-  - resource: Microsoft.WinGet.DSC/WinGetPackage
-    id: winget_Microsoft.AzureCLI
-    directives:
-      description: "Install Microsoft.AzureCLI"
-      securityContext: elevated
-    settings:
-      id: "Microsoft.AzureCLI"
-      source: "winget"
-  - resource: Microsoft.WinGet.DSC/WinGetPackage
-    id: winget_JanDeDobbeleer.OhMyPosh
-    directives:
-      description: "Install JanDeDobbeleer.OhMyPosh"
-    settings:
-      id: "JanDeDobbeleer.OhMyPosh"
-      source: "winget"
-  - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Microsoft.PowerShell
     directives:
-      description: "Install Microsoft.PowerShell"
+      description: "Install PowerShell"
       securityContext: elevated
     settings:
       id: "Microsoft.PowerShell"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_JanDeDobbeleer.OhMyPosh
+    directives:
+      description: "Install Oh My Posh"
+    settings:
+      id: "JanDeDobbeleer.OhMyPosh"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.PowerToys
+    directives:
+      description: "Install PowerToys"
+    settings:
+      id: "Microsoft.PowerToys"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_GitHub.GitHubDesktop
     directives:
-      description: "Install GitHub.GitHubDesktop"
+      description: "Install GitHub Desktop"
     settings:
       id: "GitHub.GitHubDesktop"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
-    id: winget_Microsoft.AIShell
-    directives:
-      description: "Install Microsoft.AIShell"
-    settings:
-      id: "Microsoft.AIShell"
-      source: "winget"
-  - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Element.Element
     directives:
-      description: "Install Element.Element"
+      description: "Install Element"
     settings:
       id: "Element.Element"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Microsoft.VisualStudioCode
     directives:
-      description: "Install Microsoft.VisualStudioCode"
+      description: "Install Visual Studio Code"
     settings:
       id: "Microsoft.VisualStudioCode"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Microsoft.WingetCreate
     directives:
-      description: "Install Microsoft.WingetCreate"
+      description: "Install WinGet Create"
     settings:
       id: "Microsoft.WingetCreate"
       source: "winget"
   - resource: Microsoft.WinGet.DSC/WinGetPackage
     id: winget_Microsoft.WindowsApp
     directives:
-      description: "Install Microsoft.WindowsApp"
+      description: "Install Windows App"
     settings:
       id: "Microsoft.WindowsApp"
       source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.Edit
+    directives:
+      description: "Install Microsoft Edit"
+    settings:
+      id: "Microsoft.Edit"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.WinGetStudio
+    directives:
+      description: "Install WinGet Studio"
+    settings:
+      id: "Microsoft.WinGetStudio"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_GitHub.Copilot
+    directives:
+      description: "Install GitHub Copilot CLI"
+    settings:
+      id: "GitHub.Copilot"
+      source: "winget"
+  ############################################################################
+  # WSL + Ubuntu
+  # NOTE: WSL install may require a reboot before Ubuntu can be installed.
+  ############################################################################
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Microsoft.WSL
+    directives:
+      description: "Install Windows Subsystem for Linux"
+      securityContext: elevated
+    settings:
+      id: "Microsoft.WSL"
+      source: "winget"
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    id: winget_Canonical.Ubuntu.2404
+    directives:
+      description: "Install Ubuntu 24.04 LTS"
+    dependsOn:
+    - winget_Microsoft.WSL
+    settings:
+      id: "Canonical.Ubuntu.2404"
+      source: "winget"
+  ############################################################################
+  # PowerToys Settings
+  # NOTE: PowerToys v2 DSC resources (Microsoft.PowerToys.Configure) are no
+  # longer worth investing in. Use the v3 configuration for PowerToys settings
+  # via Microsoft.PowerToys/* native DSC v3 resources.
+  ############################################################################
+  ############################################################################
+  # WinGet Command Not Found (install module + add to $PROFILE)
+  ############################################################################
+  - resource: PSDscResources/Script
+    id: Enable_CommandNotFound
+    directives:
+      description: "Enable WinGet Command Not Found"
+      module: PSDscResources
+    dependsOn:
+    - winget_Microsoft.PowerShell
+    settings:
+      GetScript: |
+        @{ Result = (Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue) -match 'Microsoft.WinGet.CommandNotFound' }
+      TestScript: |
+        (Test-Path $PROFILE) -and ((Get-Content $PROFILE -Raw) -match 'Microsoft.WinGet.CommandNotFound')
+      SetScript: |
+        if (-not (Get-Module -ListAvailable -Name Microsoft.WinGet.CommandNotFound)) { Install-Module -Name Microsoft.WinGet.CommandNotFound -Force -AcceptLicense }
+        if (-not (Test-Path $PROFILE)) { New-Item -Path $PROFILE -Force }
+        Add-Content -Path $PROFILE -Value "`nImport-Module -Name Microsoft.WinGet.CommandNotFound"
+  ############################################################################
+  # Windows Optional Features (elevated)
+  ############################################################################
+  - resource: PSDscResources/WindowsOptionalFeature
+    id: Feature_WindowsSandbox
+    directives:
+      description: "Enable Windows Sandbox"
+      module: PSDscResources
+      securityContext: elevated
+    settings:
+      Name: "Containers-DisposableClientVM"
+      Ensure: "Present"
+  - resource: PSDscResources/WindowsOptionalFeature
+    id: Feature_HyperV
+    directives:
+      description: "Enable Hyper-V"
+      module: PSDscResources
+      securityContext: elevated
+    settings:
+      Name: "Microsoft-Hyper-V-All"
+      Ensure: "Present"
+  ############################################################################
+  # Git Clone — Public Forks (requires GitDsc prerelease module)
+  ############################################################################
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-cli
+    directives:
+      description: "Clone winget-cli fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-cli.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-pkgs
+    directives:
+      description: "Clone winget-pkgs fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-pkgs.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-create
+    directives:
+      description: "Clone winget-create fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-create.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-cli-restsource
+    directives:
+      description: "Clone winget-cli-restsource fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-cli-restsource.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-dsc
+    directives:
+      description: "Clone winget-dsc fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-dsc.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-command-not-found
+    directives:
+      description: "Clone winget-command-not-found fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-command-not-found.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_winget-studio
+    directives:
+      description: "Clone winget-studio fork"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/winget-studio.git"
+      RootDirectory: "D:\\GitHub"
+  - resource: GitDsc/GitClone
+    id: GitClone_setup
+    directives:
+      description: "Clone setup repo"
+      module: GitDsc
+      allowPrerelease: true
+    dependsOn:
+    - winget_Git.Git
+    - DevDrive1
+    settings:
+      HttpsUrl: "https://github.com/denelon/setup.git"
+      RootDirectory: "D:\\GitHub"
