@@ -1,6 +1,10 @@
 # Workstation Configuration as Code with WinGet
 
-Declarative workstation setup using [WinGet Configuration](https://learn.microsoft.com/windows/package-manager/configuration/). Define your apps, settings, and environment in a YAML file — then apply it to any machine.
+Declarative workstation setup using [WinGet Configuration](https://learn.microsoft.com/windows/package-manager/configuration/). Define your apps, settings, and environment in a YAML file - then apply it to any machine.
+
+## Build your own setup repo
+
+This repo is one example - fork it as a starting point, or build your own. The [Microsoft Learn convention](https://learn.microsoft.com/windows/package-manager/configuration/create#file-naming-convention) for Git-based projects is to save your default config at `./.config/configuration.winget`, which enables the **Fork → Clone → `winget configure` → F5** flow for anyone who picks up your repo. Additional configs (different toolchains, personas) live alongside it in `.config/`.
 
 ## Quick Start
 
@@ -44,11 +48,11 @@ winget configure .\setup\v3\denelon.winget
 
 The configurations in this repo set up a development workstation with:
 
-- **Dev Drive** — 100 GB ReFS volume for source code
-- **Developer tools** — Git, PowerShell 7, VS Code, GitHub Desktop, Azure CLI
-- **Utilities** — PowerToys, Oh My Posh, WinGet Create
-- **Windows settings** — Developer mode, color scheme, taskbar alignment
-- **App settings** — WinGet settings, WinGet Create settings
+- **Dev Drive** - 100 GB ReFS volume for source code
+- **Developer tools** - Git, PowerShell 7, VS Code, GitHub Desktop, Azure CLI
+- **Utilities** - PowerToys, Oh My Posh, WinGet Create
+- **Windows settings** - Developer mode, color scheme, taskbar alignment
+- **App settings** - WinGet settings, WinGet Create settings
 
 ## Schema Versions
 
@@ -56,8 +60,8 @@ This repo maintains configurations in both DSC v2 and v3 formats:
 
 | Version | Directory | Status |
 |---------|-----------|--------|
-| DSC v2 | [`v2/`](v2/) | Stable — uses `configurationVersion: 0.2` |
-| DSC v3 | [`v3/`](v3/) | Current — uses dscv3 processor |
+| DSC v2 | [`v2/`](v2/) | Stable - uses `configurationVersion: 0.2` |
+| DSC v3 | [`v3/`](v3/) | Current - uses dscv3 processor |
 
 New configurations should use v3. To convert an existing v2 config, see the [migration guide](docs/v2-to-v3-migration.md) or use the [`winget-config-v2-to-v3`](https://github.com/microsoft/winget-dsc) Copilot CLI skill.
 
@@ -69,14 +73,14 @@ New configurations should use v3. To convert an existing v2 config, see the [mig
 
 ## Improvements
 
-Upstream issues that would improve WinGet Configuration workflows. These are tracked here as a wishlist — when resolved, they unlock better configurations in this repo.
+Upstream issues that would improve WinGet Configuration workflows. These are tracked here as a wishlist - when resolved, they unlock better configurations in this repo.
 
 | Issue | Area | Description |
 |-------|------|-------------|
-| [PowerShell/DSC#1521](https://github.com/PowerShell/DSC/issues/1521) | Assertions | `Microsoft/OSInfo`: Support minimum version assertion (>= comparison) — enables fast native OS version pre-flight in v3 configs |
+| [PowerShell/DSC#1521](https://github.com/PowerShell/DSC/issues/1521) | Assertions | `Microsoft/OSInfo`: Support minimum version assertion (>= comparison) - enables fast native OS version pre-flight in v3 configs |
 
 ## Related
 
 - [WinGet Configuration docs](https://learn.microsoft.com/windows/package-manager/configuration/)
-- [microsoft/winget-dsc](https://github.com/microsoft/winget-dsc) — DSC resources, v3 samples, and conversion guide
-- [microsoft/winget-cli](https://github.com/microsoft/winget-cli) — WinGet client
+- [microsoft/winget-dsc](https://github.com/microsoft/winget-dsc) - DSC resources, v3 samples, and conversion guide
+- [microsoft/winget-cli](https://github.com/microsoft/winget-cli) - WinGet client
