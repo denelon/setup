@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.3
+# PSConfEU 2026 — Dev Box B: Reset configuration
+# Logical undo of configuration.winget — removes installed packages to restore
+# the box to a clean starting state for re-running the demo.
+################################################################################
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+metadata:
+  winget:
+    processor:
+      identifier: "dscv3"
+resources:
+################################################################################
+# Remove packages
+################################################################################
+- name: remove_Microsoft.VisualStudioCode
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Remove Visual Studio Code"
+  properties:
+    id: "Microsoft.VisualStudioCode"
+    source: "winget"
+    ensure: "Absent"
+- name: remove_Git.Git
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Remove Git"
+    winget:
+      securityContext: "elevated"
+  properties:
+    id: "Git.Git"
+    source: "winget"
+    ensure: "Absent"
+- name: remove_GitHub.cli
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Remove GitHub CLI"
+  properties:
+    id: "GitHub.cli"
+    source: "winget"
+    ensure: "Absent"
+- name: remove_Microsoft.PowerToys
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Remove PowerToys"
+  properties:
+    id: "Microsoft.PowerToys"
+    source: "winget"
+    ensure: "Absent"
+- name: remove_JanDeDobbeleer.OhMyPosh
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Remove Oh My Posh"
+  properties:
+    id: "JanDeDobbeleer.OhMyPosh"
+    source: "winget"
+    ensure: "Absent"
+- name: remove_Microsoft.Sysinternals.Suite
+  type: Microsoft.WinGet/Package
+  metadata:
+    description: "Remove Sysinternals Suite"
+  properties:
+    id: "Microsoft.Sysinternals.Suite"
+    source: "winget"
+    ensure: "Absent"
