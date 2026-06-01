@@ -124,7 +124,8 @@ resources:
   - winget_JanDeDobbeleer.OhMyPosh
   properties:
     states:
-    - source: "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json"
+    - version: 4
+      source: "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json"
 - name: OhMyPosh-Shell
   type: OhMyPosh/Shell
   dependsOn:
