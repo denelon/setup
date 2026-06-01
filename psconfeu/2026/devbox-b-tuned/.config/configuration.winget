@@ -108,16 +108,18 @@ resources:
 ################################################################################
 # Oh-My-Posh wiring (native v3 resources, fast)
 ################################################################################
-- name: OhMyPosh-Font
-  type: OhMyPosh/Font
+- name: winget_ryanoasis.CaskaydiaCove
+  type: Microsoft.WinGet/Package
   metadata:
+    description: "CaskaydiaCove Nerd Font"
     winget:
       securityContext: "elevated"
   dependsOn:
   - winget_JanDeDobbeleer.OhMyPosh
   properties:
-    states:
-    - name: "CascaydiaCove"
+    id: "ryanoasis.CaskaydiaCove"
+    source: "winget-font"
+    useLatest: true
 - name: OhMyPosh-Config
   type: OhMyPosh/Config
   dependsOn:
