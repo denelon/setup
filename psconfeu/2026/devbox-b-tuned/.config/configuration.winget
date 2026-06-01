@@ -1,9 +1,7 @@
 # yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.3
 # PSConfEU 2026 — Dev Box B: "PowerShell developer workstation" flavor
-# Mostly native dscv3 (fast apply). Two pragmatic exceptions:
+# Mostly native dscv3 (fast apply). One pragmatic exception:
 #   - Microsoft.VSCode.Dsc/VSCodeExtension is v2 adapted (pays adapter cost).
-#   - WinGet Command Not Found uses RunCommandOnSet because PowerToys has no
-#     DSC v3 resource for CmdNotFound today (gap, ~25 other modules covered).
 ################################################################################
 $schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
 metadata:
@@ -134,37 +132,36 @@ resources:
     shell: "pwsh"
 ################################################################################
 # PowerShell modules for a PS dev workflow
-# Single RunCommandOnSet to keep it one transitional resource.
 ################################################################################
 - name: Install-PSDevModules
-  type: Microsoft.DSC.Transitional/RunCommandOnSet
+  type: Microsoft.DSC.Transitional/PowerShellScript
   metadata:
     description: "Install PowerShell dev modules: PSScriptAnalyzer, Pester, PSReadLine, SecretManagement, SecretStore"
   dependsOn:
   - winget_Microsoft.PowerShell
   properties:
-    executable: "pwsh"
-    arguments:
-    - "-NoProfile"
-    - "-NoLogo"
-    - "-Command"
-    - "foreach ($m in @('PSScriptAnalyzer','Pester','PSReadLine','Microsoft.PowerShell.SecretManagement','Microsoft.PowerShell.SecretStore')) { if (-not (Get-Module -ListAvailable -Name $m)) { Install-PSResource -Name $m -TrustRepository -AcceptLicense } }"
+    testScript: |
+      $modules = @('PSScriptAnalyzer','Pester','PSReadLine','Microsoft.PowerShell.SecretManagement','Microsoft.PowerShell.SecretStore')
+      $missing = $modules | Where-Object { -not (Get-Module -ListAvailable -Name $_) }
+      @{ _inDesiredState = ($missing.Count -eq 0) }
+    setScript: |
+      foreach ($m in @('PSScriptAnalyzer','Pester','PSReadLine','Microsoft.PowerShell.SecretManagement','Microsoft.PowerShell.SecretStore')) {
+        if (-not (Get-Module -ListAvailable -Name $m)) { Install-PSResource -Name $m -TrustRepository -AcceptLicense }
+      }
 ################################################################################
 # VS Code PowerShell extension (via Microsoft.VSCode.Dsc adapted module)
 ################################################################################
 - name: Install-VSCodeDscModule
-  type: Microsoft.DSC.Transitional/RunCommandOnSet
+  type: Microsoft.DSC.Transitional/PowerShellScript
   metadata:
     description: "Install Microsoft.VSCode.Dsc PowerShell module (v2 adapted resource provider for VSCodeExtension)"
   dependsOn:
   - winget_Microsoft.PowerShell
   properties:
-    executable: "pwsh"
-    arguments:
-    - "-NoProfile"
-    - "-NoLogo"
-    - "-Command"
-    - "if (-not (Get-Module -ListAvailable -Name Microsoft.VSCode.Dsc)) { Install-PSResource -Name Microsoft.VSCode.Dsc -TrustRepository -AcceptLicense -Prerelease }"
+    testScript: |
+      @{ _inDesiredState = [bool](Get-Module -ListAvailable -Name Microsoft.VSCode.Dsc) }
+    setScript: |
+      Install-PSResource -Name Microsoft.VSCode.Dsc -TrustRepository -AcceptLicense -Prerelease
 - name: VSCode-PowerShellExtension
   type: Microsoft.VSCode.Dsc/VSCodeExtension
   metadata:
@@ -175,20 +172,3 @@ resources:
   properties:
     Name: "ms-vscode.PowerShell"
     Exist: true
-################################################################################
-# WinGet Command Not Found
-################################################################################
-- name: Enable-CommandNotFound
-  type: Microsoft.DSC.Transitional/RunCommandOnSet
-  metadata:
-    description: "Enable WinGet Command Not Found in pwsh profile"
-  dependsOn:
-  - winget_Microsoft.PowerShell
-  - winget_Microsoft.PowerToys
-  properties:
-    executable: "pwsh"
-    arguments:
-    - "-NoProfile"
-    - "-NoLogo"
-    - "-Command"
-    - "if (-not (Get-Module -ListAvailable -Name Microsoft.WinGet.CommandNotFound)) { Install-Module -Name Microsoft.WinGet.CommandNotFound -Force -AcceptLicense }; if (-not (Test-Path $PROFILE)) { New-Item -Path $PROFILE -Force }; $c = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue; if ($c -notmatch 'Microsoft.WinGet.CommandNotFound') { Add-Content -Path $PROFILE -Value \"`nImport-Module -Name Microsoft.WinGet.CommandNotFound\" }"

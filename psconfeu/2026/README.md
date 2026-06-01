@@ -14,9 +14,8 @@ Or open the folder in VS Code and hit **F5** if the WinGet Configure extension i
 
 ### Subfolders
 
-- **`devbox-b-tuned/`** — PowerShell-developer workstation flavor. **Mostly native `dscv3` resources for fast apply**, with two pragmatic exceptions called out on stage:
+- **`devbox-b-tuned/`** — PowerShell-developer workstation flavor. **Mostly native `dscv3` resources for fast apply**, with one pragmatic exception called out on stage:
   - `Microsoft.VSCode.Dsc/VSCodeExtension` is a **v2 (adapted) resource** — it pays the adapter cost, but it's the right tool for installing VS Code extensions today.
-  - WinGet Command Not Found is enabled via a small `RunCommandOnSet` script because **PowerToys does not yet expose a DSC v3 resource for CmdNotFound** (the `Microsoft.PowerToys/<Module>Settings` family covers ~25 modules but not this one as of PowerToys 0.95.x). Tracked as a wish-list gap.
 
 ## Prerequisites
 
