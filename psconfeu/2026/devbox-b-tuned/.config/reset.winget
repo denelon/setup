@@ -19,7 +19,7 @@ resources:
   properties:
     id: "Microsoft.VisualStudioCode"
     source: "winget"
-    ensure: "Absent"
+    _exist: false
 - name: remove_Git.Git
   type: Microsoft.WinGet/Package
   metadata:
@@ -29,7 +29,7 @@ resources:
   properties:
     id: "Git.Git"
     source: "winget"
-    ensure: "Absent"
+    _exist: false
 - name: remove_GitHub.cli
   type: Microsoft.WinGet/Package
   metadata:
@@ -37,7 +37,7 @@ resources:
   properties:
     id: "GitHub.cli"
     source: "winget"
-    ensure: "Absent"
+    _exist: false
 - name: remove_Microsoft.PowerToys
   type: Microsoft.WinGet/Package
   metadata:
@@ -45,7 +45,7 @@ resources:
   properties:
     id: "Microsoft.PowerToys"
     source: "winget"
-    ensure: "Absent"
+    _exist: false
 - name: remove_JanDeDobbeleer.OhMyPosh
   type: Microsoft.WinGet/Package
   metadata:
@@ -53,7 +53,7 @@ resources:
   properties:
     id: "JanDeDobbeleer.OhMyPosh"
     source: "winget"
-    ensure: "Absent"
+    _exist: false
 - name: remove_Microsoft.Sysinternals.Suite
   type: Microsoft.WinGet/Package
   metadata:
@@ -61,4 +61,4 @@ resources:
   properties:
     id: "Microsoft.Sysinternals.Suite"
     source: "winget"
-    ensure: "Absent"
+    _exist: false
