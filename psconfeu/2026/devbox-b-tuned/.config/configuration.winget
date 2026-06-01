@@ -116,20 +116,23 @@ resources:
   dependsOn:
   - winget_JanDeDobbeleer.OhMyPosh
   properties:
-    name: "CascaydiaCove"
+    states:
+    - name: "CascaydiaCove"
 - name: OhMyPosh-Config
   type: OhMyPosh/Config
   dependsOn:
   - winget_JanDeDobbeleer.OhMyPosh
   properties:
-    theme: "jandedobbeleer"
+    states:
+    - source: "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json"
 - name: OhMyPosh-Shell
   type: OhMyPosh/Shell
   dependsOn:
   - winget_JanDeDobbeleer.OhMyPosh
   - winget_Microsoft.PowerShell
   properties:
-    shell: "pwsh"
+    states:
+    - name: "pwsh"
 ################################################################################
 # PowerShell modules for a PS dev workflow
 ################################################################################
