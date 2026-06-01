@@ -143,7 +143,7 @@ resources:
     testScript: |
       $modules = @('PSScriptAnalyzer','Pester','PSReadLine','Microsoft.PowerShell.SecretManagement','Microsoft.PowerShell.SecretStore')
       $missing = $modules | Where-Object { -not (Get-Module -ListAvailable -Name $_) }
-      @{ _inDesiredState = ($missing.Count -eq 0) }
+      $missing.Count -eq 0
     setScript: |
       foreach ($m in @('PSScriptAnalyzer','Pester','PSReadLine','Microsoft.PowerShell.SecretManagement','Microsoft.PowerShell.SecretStore')) {
         if (-not (Get-Module -ListAvailable -Name $m)) { Install-PSResource -Name $m -TrustRepository -AcceptLicense }
@@ -159,7 +159,7 @@ resources:
   - winget_Microsoft.PowerShell
   properties:
     testScript: |
-      @{ _inDesiredState = [bool](Get-Module -ListAvailable -Name Microsoft.VSCode.Dsc) }
+      [bool](Get-Module -ListAvailable -Name Microsoft.VSCode.Dsc)
     setScript: |
       Install-PSResource -Name Microsoft.VSCode.Dsc -TrustRepository -AcceptLicense -Prerelease
 - name: VSCode-PowerShellExtension
